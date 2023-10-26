@@ -4,15 +4,21 @@ import random
 def exploreOnly() -> float:
     days_per_cafeteria = 50
     total_days = 200
-    mean_values = [10, 8, 9, 7]  # Mean happiness values for each cafeteria
-    std_values = [2, 1, 1.5, 1]  # Standard deviation of happiness for each cafeteria
+    # Mean happiness values for each cafeteria
+    mean_values = [10, 8, 9, 7]
+    # Standard deviation of happiness for each cafeteria
+    std_values = [2, 1, 1.5, 1]
     total_happiness = 0
 
-    for i in range(4):  # Iterate through each cafeteria
-        for j in range(days_per_cafeteria):  # Iterate for the specified number of days
+    # Iterate through each cafeteria
+    for i in range(4):
+        # Iterate for the specified number of days
+        for j in range(days_per_cafeteria):
             mean = mean_values[i]
             std = std_values[i]
-            happiness = random.normalvariate(mean, std)  # Generate normally distributed random number
-            total_happiness += happiness  # Add generated happiness to the total
-
+            # Generate normally distributed random number
+            happiness = random.normalvariate(mean, std)
+            # Add generated happiness to the total
+            total_happiness += happiness
+    # return the sum of all the happiness values that were generated over 200 days
     return total_happiness
