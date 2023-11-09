@@ -32,10 +32,10 @@ def simulation(t: int, e=10):
         explore_Only = 0
         exploit_Only = 0
         eGreedy = 0
-        cafe1 = 10
-        cafe2 = 8
-        cafe3 = 9
-        cafe4 = 7
+        cafe1 = 7
+        cafe2 = 4
+        cafe3 = 10
+        cafe4 = 5
 
         for i in range(t):
             # for t times, calculate the average happiness
@@ -43,14 +43,14 @@ def simulation(t: int, e=10):
             exploit_Only += exploitOnly()
             eGreedy += eGreedy(e)
 
-        optimal_happiness = 200 * cafe1
+        optimal_happiness = 200 * cafe3
 
         expected_explore_happiness = 50 * (cafe1 + cafe2 + cafe3 + cafe4)
         expected_explore_regret = optimal_happiness - expected_explore_happiness
         simulated_explore_happiness = explore_Only / t
         simulated_explore_regret = optimal_happiness - simulated_explore_happiness
 
-        expected_exploit_happiness = (cafe2 + cafe3 + cafe4) + (197 * cafe1)
+        expected_exploit_happiness = (cafe2 + cafe1 + cafe4) + (197 * cafe3)
         expected_exploit_regret = optimal_happiness - expected_exploit_happiness
         simulated_exploit_happiness = exploit_Only / t
         simulated_exploit_regret = optimal_happiness - simulated_exploit_happiness
