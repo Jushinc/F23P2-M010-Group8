@@ -1,0 +1,27 @@
+import random
+
+means = [7, 4, 10, 5]
+std_devs = [3, 10, 6, 2]
+
+
+def eGreedy(e=10):
+    total_happiness = [0, 0, 0, 0]
+    visits = [0,0,0,0]
+    for cafe in range(4): # visits each cafe once
+        happiness = random.normalvariate(means[cafe], std_devs[cafe]) #calculates happiness for the cafe from a normal distribution
+        total_happiness[cafe] += happiness # adds the happiness to the list total_happiness
+        visits[cafe] += 1
+    for i in range(196): # visits a cafe for 196 days
+        r = random.random() # generates a random value
+        if r < e / 100: # if r is less than e/100
+            cafe = random.randint(0, 3) # chooses a random cafe and assigns it to the variable
+        else: # if r is greater than equal to e/100
+            avg_happiness = [] #creates an empty list where the average happiness values will be stored
+            for cafe in range(4):
+                average = total_happiness[cafe] / visits[cafe] # calculates the average happiness for the current cafeteria
+                avg_happiness.append(average) #appends the average happiness calculated to the list
+            cafe = avg_happiness.index(max(avg_happiness)) # chooses the cafeteria with the highest average happiness
+        happiness = random.normalvariate(means[cafe], std_devs[cafe]) # calculates the happiness from the chosen cafe
+        total_happiness[cafe] += happiness # adds the happiness to the list total_happiness
+        visits[cafe] += 1
+    return sum(total_happiness) # returns the sum of the total happiness from all the cafes
