@@ -1,14 +1,15 @@
-# simulation by Roman Espindola
 def simulation(t: int, e=10):
         # initialize 3 variables to zero
         explore_Only = 0
         exploit_Only = 0
         eGreedy = 0
-# average happiness values for each cafe
-        cafe1 = 7
-        cafe2 = 4
-        cafe3 = 10
-        cafe4 = 5
+
+        cafe1 = cafe_mean[0]
+        cafe2 = cafe_mean[1]
+        cafe3 = cafe_mean[2]
+        cafe4 = cafe_mean[3]
+
+
 
         for i in range(t):
             # for t times, calculate the average happiness
@@ -16,27 +17,27 @@ def simulation(t: int, e=10):
             exploit_Only += exploitOnly()
             eGreedy += eGreedy(e)
 
-        optimal_happiness = 200 * cafe3
+        optimal_happiness = 200 * max(cafe_mean)
+
 
         expected_explore_happiness = 50 * (cafe1 + cafe2 + cafe3 + cafe4)
         expected_explore_regret = optimal_happiness - expected_explore_happiness
         simulated_explore_happiness = explore_Only / t
         simulated_explore_regret = optimal_happiness - simulated_explore_happiness
 
-        expected_exploit_happiness = (cafe2 + cafe1 + cafe4) + (197 * cafe3)
+        expected_exploit_happiness = (cafe3 + cafe2 + cafe1 + cafe4) + (196 * (max(cafe_mean)))
         expected_exploit_regret = optimal_happiness - expected_exploit_happiness
         simulated_exploit_happiness = exploit_Only / t
         simulated_exploit_regret = optimal_happiness - simulated_exploit_happiness
 
-        expected_eGreedy_happiness = (200*(((100 - e)/100) * cafe1) + (200 * ((e/400)*(cafe1 + cafe2 + cafe3 + cafe4))))
+        expected_eGreedy_happiness = (200*(((100 - e)/100) * max(cafe_mean)) + (200 * ((e/400)*(cafe1 + cafe2 + cafe3 + cafe4))))
         expected_eGreedy_regret = optimal_happiness - expected_eGreedy_happiness
         simulated_eGreedy_happiness = eGreedy / t
         simulated_eGreedy_regret = optimal_happiness - simulated_eGreedy_happiness
-
         # calculations to obtain expected and simulated values for all 3 of the functions
 
 
-        # print (optimum happiness)
+        #print (optimum happiness)
         print("Optimum Happiness: " + str(optimal_happiness))
         print("\n")
 
@@ -50,7 +51,6 @@ def simulation(t: int, e=10):
         print("\n")
         print("Simulated regret: " + str(simulated_explore_regret))
         print("\n")
-
         # prints out all the values for Explore Only with the use of "\n" putting every new value on a new line
 
         print("Exploit Only: ")
@@ -62,7 +62,6 @@ def simulation(t: int, e=10):
         print("\n")
         print("Simulated regret: " + str(simulated_exploit_regret))
         print("\n")
-
         # prints out all the values for Exploit Only with the use of "\n" putting every new value on a new line
 
         print("eGreedy: ")
