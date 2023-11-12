@@ -6,10 +6,7 @@ def simulation(t: int, e=10):
         exploit_Only = 0
         eGreedy = 0
 
-        cafe1 = cafe_mean[0]
-        cafe2 = cafe_mean[1]
-        cafe3 = cafe_mean[2]
-        cafe4 = cafe_mean[3]
+        cafe_mean = [7, 4, 10, 5]
 
 
 
@@ -22,17 +19,17 @@ def simulation(t: int, e=10):
         optimal_happiness = 200 * max(cafe_mean)
 
 
-        expected_explore_happiness = 50 * (cafe1 + cafe2 + cafe3 + cafe4)
+        expected_explore_happiness = 50 * sum(cafe_mean)
         expected_explore_regret = optimal_happiness - expected_explore_happiness
         simulated_explore_happiness = explore_Only / t
         simulated_explore_regret = optimal_happiness - simulated_explore_happiness
 
-        expected_exploit_happiness = (cafe3 + cafe2 + cafe1 + cafe4) + (196 * (max(cafe_mean)))
+        expected_exploit_happiness = sum(cafe_mean) + (196 * (max(cafe_mean)))
         expected_exploit_regret = optimal_happiness - expected_exploit_happiness
         simulated_exploit_happiness = exploit_Only / t
         simulated_exploit_regret = optimal_happiness - simulated_exploit_happiness
 
-        expected_eGreedy_happiness = (200*(((100 - e)/100) * max(cafe_mean)) + (200 * ((e/400)*(cafe1 + cafe2 + cafe3 + cafe4))))
+        expected_eGreedy_happiness = (200*(((100 - e)/100) * max(cafe_mean)) + (200 * ((e/400)*sum(cafe_mean))))
         expected_eGreedy_regret = optimal_happiness - expected_eGreedy_happiness
         simulated_eGreedy_happiness = eGreedy / t
         simulated_eGreedy_regret = optimal_happiness - simulated_eGreedy_happiness
