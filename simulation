@@ -1,23 +1,21 @@
-import random
-
 def simulation(t: int, e=10):
         # initialize 3 variables to zero
         explore_Only = 0
         exploit_Only = 0
-        eGreedy = 0
+        total_eGreedy = 0
 
         cafe_mean = [7, 4, 10, 5]
 
 
 
         for i in range(t):
-            # for t times, calculate the average happiness
+            # for t times, calculate the total happiness to each task
             explore_Only += exploreOnly()
             exploit_Only += exploitOnly()
-            eGreedy += eGreedy(e)
+            total_eGreedy += eGreedy(e)
 
         optimal_happiness = 200 * max(cafe_mean)
-        # calculate optimum happiness
+
 
         expected_explore_happiness = 50 * sum(cafe_mean)
         expected_explore_regret = optimal_happiness - expected_explore_happiness
@@ -31,11 +29,11 @@ def simulation(t: int, e=10):
 
         expected_eGreedy_happiness = (200*(((100 - e)/100) * max(cafe_mean)) + (200 * ((e/400)*sum(cafe_mean))))
         expected_eGreedy_regret = optimal_happiness - expected_eGreedy_happiness
-        simulated_eGreedy_happiness = eGreedy / t
+        simulated_eGreedy_happiness = total_eGreedy / t
         simulated_eGreedy_regret = optimal_happiness - simulated_eGreedy_happiness
         # calculations to obtain expected and simulated values for all 3 of the functions
 
-        # starts to print all results in correct format
+
         #print (optimum happiness)
         print("Optimum Happiness: " + str(optimal_happiness))
         print("\n")
@@ -43,32 +41,20 @@ def simulation(t: int, e=10):
 
         print("Explore Only: ")
         print("Expected Happiness: " + str(expected_explore_happiness))
-        print("\n")
         print("Expected regret: " + str(expected_explore_regret))
-        print("\n")
         print("Simulated happiness: " + str(simulated_explore_happiness))
-        print("\n")
         print("Simulated regret: " + str(simulated_explore_regret))
-        print("\n")
         # prints out all the values for Explore Only with the use of "\n" putting every new value on a new line
-
+        print("\n")
         print("Exploit Only: ")
         print("Expected Happiness: " + str(expected_exploit_happiness))
-        print("\n")
         print("Expected regret: " + str(expected_exploit_regret))
-        print("\n")
         print("Simulated happiness: " + str(simulated_exploit_happiness))
-        print("\n")
         print("Simulated regret: " + str(simulated_exploit_regret))
-        print("\n")
         # prints out all the values for Exploit Only with the use of "\n" putting every new value on a new line
-
+        print("\n")
         print("eGreedy: ")
         print("Expected Happiness: " + str(expected_eGreedy_happiness))
-        print("\n")
         print("Expected regret: " + str(expected_eGreedy_regret))
-        print("\n")
         print("Simulated happiness: " + str(simulated_eGreedy_happiness))
-        print("\n")
         print("Simulated regret: " + str(simulated_eGreedy_regret))
-        print("\n")
