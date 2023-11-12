@@ -1,3 +1,5 @@
+import random
+
 def simulation(t: int, e=10):
         # initialize 3 variables to zero
         explore_Only = 0
