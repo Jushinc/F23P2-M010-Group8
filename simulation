@@ -17,7 +17,7 @@ def simulation(t: int, e=10):
             eGreedy += eGreedy(e)
 
         optimal_happiness = 200 * max(cafe_mean)
-
+        # calculate optimum happiness
 
         expected_explore_happiness = 50 * sum(cafe_mean)
         expected_explore_regret = optimal_happiness - expected_explore_happiness
@@ -35,7 +35,7 @@ def simulation(t: int, e=10):
         simulated_eGreedy_regret = optimal_happiness - simulated_eGreedy_happiness
         # calculations to obtain expected and simulated values for all 3 of the functions
 
-
+        # starts to print all results in correct format
         #print (optimum happiness)
         print("Optimum Happiness: " + str(optimal_happiness))
         print("\n")
